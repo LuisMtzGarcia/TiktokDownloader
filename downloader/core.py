@@ -4,8 +4,16 @@ class TiktokDownloader():
 
     def __init__(self):
         # process to check if required files exist
-        helpers.generate_file('downloaded')
+        self.verify_storage_files()
         return
+    
+    def verify_storage_files(self):
+        storage_files = ['downloaded', 'failed', 'to_download']
+
+        for file_name in storage_files:
+            file_exists = helpers.storage_file_exists(file_name)
+            if not file_exists:
+                helpers.generate_file(file_name)
 
     def main_process(self):
         # process to load tiktoks into in-memory array
