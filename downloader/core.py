@@ -8,6 +8,8 @@ class TiktokDownloader():
 
         # Load tiktoks from storage to arrays
         self.downloaded_tiktoks = self.load_downloaded_tiktoks()
+        self.failed_tiktoks = self.load_failed_tiktoks()
+        self.to_download_tiktoks = self.load_to_download_tiktoks()
         return
     
     def verify_storage_files(self):
@@ -20,6 +22,14 @@ class TiktokDownloader():
     
     def load_downloaded_tiktoks(self):
         file_name = 'downloaded'
+        return helpers.load_txt_file(file_name)
+
+    def load_failed_tiktoks(self):
+        file_name = 'failed'
+        return helpers.load_txt_file(file_name)
+    
+    def load_to_download_tiktoks(self):
+        file_name = 'to_download'
         return helpers.load_txt_file(file_name)
 
     def main_process(self):
